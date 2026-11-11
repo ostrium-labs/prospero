@@ -77,7 +77,8 @@ KytyPS5 loads a directory containing `eboot.bin`, a bare PS5 ELF, or a `.zar`:
 
 The dump must be one you own. No game, firmware or key is bundled or
 downloadable. Compatibility is early: expect boot and menus, not playable
-titles.
+titles. Default keyboard, mouse and gamepad controls are documented in
+[key-mapping.md](https://github.com/ostrium-labs/prospero-emu/blob/main/docs/prospero/key-mapping.md).
 
 ## Notes
 
