@@ -14,7 +14,7 @@ fork**, not for this planning repo.
 | Clang | system clang |
 | glslangValidator | 16.6.0 |
 | Ninja | 1.13.2 (installed with `pip --user`) |
-| Vulkan ICDs | Intel present; no NVIDIA/AMD ICD on this host |
+| Vulkan | Intel Arc iGPU (ARL), device API 1.4.354 (Mesa), loader 1.4.363 |
 
 ## Prerequisites (Debian/Ubuntu)
 
@@ -66,6 +66,18 @@ Observed output begins:
 Release, clang-lld, ver = 0.3.0, git = KytyPS5-2026-11-11-bc934ef
 kyty_emulator --game <dir|elf|zar> [options]
 ```
+
+## Run a game
+
+KytyPS5 loads a directory containing `eboot.bin`, a bare PS5 ELF, or a `.zar`:
+
+```bash
+./_Build/linux-no-qt/kyty_emulator --game /path/to/your-dump
+```
+
+The dump must be one you own. No game, firmware or key is bundled or
+downloadable. Compatibility is early: expect boot and menus, not playable
+titles.
 
 ## Notes
 

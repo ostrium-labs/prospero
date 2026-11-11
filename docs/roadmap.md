@@ -13,6 +13,7 @@ trace.
 - [x] Build the chosen base headless on Linux ([build.md](build.md)).
 - [x] Create the GPL-2.0 `prospero-emu` fork repo.
 - [x] Export a replayable shader corpus (manifest + validator in the fork).
+- [x] Add `shader_corpus_tool` to replay captures in CI.
 - [ ] Stand up the compatibility harness skeleton (see [compatibility.md](compatibility.md)).
 - [ ] Capture tooling: RenderDoc, GPU traces, and a deterministic input recorder.
 

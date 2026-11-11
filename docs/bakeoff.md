@@ -144,7 +144,8 @@ Therefore:
    - [x] Corpus export: `--graphics-debug-dump` now writes a JSON manifest per
      compiled shader (stage, hash, wave size, user data, compute input info).
    - [x] `tools/prospero/corpus_check.py` validates manifests and SPIR-V.
-   - [ ] Replay tool that recompiles a manifest and diffs against the capture.
+   - [x] Replay tool that recompiles a manifest and diffs against the capture
+     (`shader_corpus_tool`, with a redistributable smoke corpus).
 3. [ ] Find or build a legal PS5 test binary to complete the P0 render check.
 4. [x] Record the exact host/toolchain in [build.md](build.md).
 
