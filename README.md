@@ -9,6 +9,9 @@ Named after the PS5's codename. (Orbis is the PS4.)
 > Status: planning. Nothing here runs a game yet. This repo holds the plan, the
 > architecture, the roadmap and the compatibility strategy.
 
+**Fork:** [ostrium-labs/prospero-emu](https://github.com/ostrium-labs/prospero-emu)
+(GPL-2.0) holds the emulator code. This repo is the plan.
+
 ## Documents
 
 | Doc | What it covers |

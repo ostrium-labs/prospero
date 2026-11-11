@@ -11,7 +11,8 @@ trace.
 - [x] Bake-off: inspect KytyPS5, SharpEmu and RPCSX.
 - [x] Choose a base and write the decision down ([bakeoff.md](bakeoff.md)).
 - [x] Build the chosen base headless on Linux ([build.md](build.md)).
-- [ ] Create the GPL-2.0 `prospero-emu` fork repo.
+- [x] Create the GPL-2.0 `prospero-emu` fork repo.
+- [x] Export a replayable shader corpus (manifest + validator in the fork).
 - [ ] Stand up the compatibility harness skeleton (see [compatibility.md](compatibility.md)).
 - [ ] Capture tooling: RenderDoc, GPU traces, and a deterministic input recorder.
 

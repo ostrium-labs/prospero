@@ -139,7 +139,18 @@ Therefore:
 
 ## Next actions
 
-1. Create `ostrium-labs/prospero-emu` as a GPL-2.0 fork of KytyPS5.
-2. Stand up the shader differential harness around the recompiler.
-3. Find or build a legal PS5 test binary to complete the P0 render check.
-4. Record the exact host/toolchain in [build.md](build.md).
+1. [x] Create `ostrium-labs/prospero-emu` as a GPL-2.0 fork of KytyPS5.
+2. [ ] Stand up the shader differential harness around the recompiler.
+   - [x] Corpus export: `--graphics-debug-dump` now writes a JSON manifest per
+     compiled shader (stage, hash, wave size, user data, compute input info).
+   - [x] `tools/prospero/corpus_check.py` validates manifests and SPIR-V.
+   - [ ] Replay tool that recompiles a manifest and diffs against the capture.
+3. [ ] Find or build a legal PS5 test binary to complete the P0 render check.
+4. [x] Record the exact host/toolchain in [build.md](build.md).
+
+## Fork status (2026-11-11)
+
+- Fork: <https://github.com/ostrium-labs/prospero-emu>
+- Base: KytyPS5 `bc934ef`
+- First change: shader corpus export (`d6dfc6c0`) plus corpus validator.
+- Build verified on this host after the change.
