@@ -14,6 +14,8 @@ Named after the PS5's codename. (Orbis is the PS4.)
 | Doc | What it covers |
 |---|---|
 | [docs/plan.md](docs/plan.md) | The master plan: goal, decisions, phases, risks |
+| [docs/bakeoff.md](docs/bakeoff.md) | P0 base bake-off and the fork decision |
+| [docs/build.md](docs/build.md) | Reproducible headless build notes |
 | [docs/architecture.md](docs/architecture.md) | Components, memory model, GPU path |
 | [docs/roadmap.md](docs/roadmap.md) | Phased deliverables and exit criteria |
 | [docs/compatibility.md](docs/compatibility.md) | Per-title harness, golden frames, CI matrix |

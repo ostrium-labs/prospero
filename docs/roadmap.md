@@ -8,14 +8,15 @@ trace.
 
 **Deliverables**
 
-- Bake-off: build KytyPS5, SharpEmu and RPCSX; record boot behaviour on the same
-  homebrew and the same hardware.
-- Choose a base and write the decision down.
-- Stand up the compatibility harness skeleton (see [compatibility.md](compatibility.md)).
-- Capture tooling: RenderDoc, GPU traces, and a deterministic input recorder.
+- [x] Bake-off: inspect KytyPS5, SharpEmu and RPCSX.
+- [x] Choose a base and write the decision down ([bakeoff.md](bakeoff.md)).
+- [x] Build the chosen base headless on Linux ([build.md](build.md)).
+- [ ] Create the GPL-2.0 `prospero-emu` fork repo.
+- [ ] Stand up the compatibility harness skeleton (see [compatibility.md](compatibility.md)).
+- [ ] Capture tooling: RenderDoc, GPU traces, and a deterministic input recorder.
 
-**Exit:** the chosen base builds from source and renders a homebrew on Vulkan on
-at least two vendors.
+**Exit:** the chosen base builds from source and renders a frame on Vulkan on at
+least two vendors. (A legal test binary is still needed for the render check.)
 
 ## P1 — Vertical slice (months 1–3)
 

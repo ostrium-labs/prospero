@@ -54,12 +54,17 @@ the hard part this generation; the GPU, the OS surface and per-title behaviour a
   Silicon and Snapdragon are a second, large workstream.
 - **D4 — HLE, not LLE, for the OS.** Reimplement Orbis libraries by NID; do not
   emulate the kernel instruction-for-instruction.
-- **D5 — Fork or upstream into an existing emulator.** KytyPS5 (C++),
-  SharpEmu (C#) or RPCSX (C++). A greenfield emulator is a multi-year detour.
-- **D6 — New components in Rust.** Parsing untrusted binaries and tracking GPU
-  state benefit from memory safety. Existing C++/C# code can be wrapped.
-- **D7 — The shader translator is a standalone, testable crate.** Highest
-  leverage; must be independently verifiable against hardware output.
+- **D5 — Fork KytyPS5 (C++).** Decided 2026-11-11; see
+  [bakeoff.md](bakeoff.md). It already contains a working RDNA2 → SPIR-V
+  recompiler, builds headless on Linux, and is the most active candidate.
+- **D6 — New components in Rust where it helps.** Parsing untrusted binaries and
+  tracking GPU state benefit from memory safety. Existing C++ code can be wrapped
+  behind a stable interface; do not rewrite working code for language purity.
+- **D7 — Fork the existing shader recompiler, then test it to death.** The
+  KytyPS5 recompiler is the highest-leverage component and is already ~39k LOC.
+  Do not greenfield a Rust translator before P3. Build a differential harness
+  (corpus, hardware golden frames, per-opcode tests, hard-fail on skip) around
+  the fork.
 - **D8 — Compatibility is measured, never claimed.** A per-title harness with
   golden frames gates every change.
 
@@ -132,10 +137,10 @@ Every claim in a compatibility table must link to a trace and a build.
 
 ## 10. Open questions
 
-1. Which base to fork: KytyPS5, SharpEmu, or RPCSX? Decide in P0 with a
-   build-and-boot bake-off.
-2. Is the shader translator better as a fork of an existing GCN/RDNA translator
-   or a new crate? Prototype both on one shader.
+1. ~~Which base to fork?~~ **Resolved 2026-11-11: KytyPS5.** See
+   [bakeoff.md](bakeoff.md).
+2. ~~Fork an existing shader translator or write a new crate?~~ **Resolved:
+   fork the KytyPS5 recompiler and wrap it in a differential harness.**
 3. Which ARM translation layer first: FEX-Emu or Box64?
 4. How much of Strata is worth wiring in for a neural upscaler, versus shipping
    FSR first?
