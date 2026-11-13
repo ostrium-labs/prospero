@@ -1,0 +1,16 @@
+{
+  "name": "prospero-ui",
+  "productName": "Prospero",
+  "version": "0.1.0",
+  "description": "PS5-style launcher for the Prospero emulator",
+  "license": "Apache-2.0",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron . --no-sandbox",
+    "start:gpu": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^45.3.0"
+  }
+}

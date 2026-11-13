@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' file: data:; style-src 'self' 'unsafe-inline'; script-src 'self'"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prospero</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">PROSPERO</span>
+      </div>
+
+      <nav class="nav" id="nav">
+        <button class="nav-item active" data-view="home">Games</button>
+        <button class="nav-item" data-view="library">Library</button>
+        <button class="nav-item" data-view="settings">Settings</button>
+      </nav>
+
+      <div class="top-right">
+        <span class="clock" id="clock">--:--</span>
+        <div class="avatar" title="Local user">D</div>
+        <div class="window-buttons">
+          <button class="win-btn" id="btn-min" title="Minimize" aria-label="Minimize">&#8211;</button>
+          <button class="win-btn" id="btn-close" title="Close" aria-label="Close">&#215;</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="view active" id="view-home">
+        <div class="hero" id="hero">
+          <div class="hero-bg" id="hero-bg"></div>
+          <div class="hero-shade"></div>
+          <div class="hero-content">
+            <div class="eyebrow" id="hero-titleid"></div>
+            <h1 class="hero-title" id="hero-title">No games yet</h1>
+            <p class="hero-meta" id="hero-meta">Add a folder to build your library.</p>
+            <div class="hero-actions">
+              <button class="pill primary" id="btn-play" disabled>Play</button>
+              <button class="pill" id="btn-add">Add folder</button>
+              <button class="pill ghost" id="btn-reveal" disabled>Show in folder</button>
+            </div>
+          </div>
+          <div class="hero-counter" id="hero-counter"></div>
+        </div>
+
+        <div class="carousel-wrap">
+          <div class="carousel" id="carousel"></div>
+          <div id="empty-state">
+            <div class="empty-icon" aria-hidden="true"></div>
+            <h2>Your library is empty</h2>
+            <p>Add a folder containing a game directory with <code>eboot.bin</code>, or an <code>.elf</code> / <code>.zar</code> file.</p>
+            <button class="pill primary" id="btn-add-empty">Add folder</button>
+          </div>
+        </div>
+
+        <div class="hintbar">
+          <span><kbd>&larr;</kbd><kbd>&rarr;</kbd> Select</span>
+          <span><kbd>Enter</kbd> Play</span>
+          <span><kbd>Esc</kbd> Back</span>
+          <span><kbd>F11</kbd> Fullscreen</span>
+        </div>
+      </section>
+
+      <section class="view" id="view-library">
+        <div class="page-head">
+          <div>
+            <h2>Library</h2>
+            <p class="muted">Folders are scanned for <code>eboot.bin</code>, <code>.elf</code> and <code>.zar</code>.</p>
+          </div>
+          <div class="row">
+            <button class="pill" id="btn-rescan">Rescan</button>
+            <button class="pill primary" id="btn-add-folder">Add folder</button>
+          </div>
+        </div>
+
+        <h3 class="section-title">Folders</h3>
+        <div class="folder-list" id="folders"></div>
+
+        <h3 class="section-title">All games <span class="count" id="game-count"></span></h3>
+        <div class="grid" id="library-games"></div>
+      </section>
+
+      <section class="view" id="view-settings">
+        <div class="page-head">
+          <div>
+            <h2>Settings</h2>
+            <p class="muted">Emulator path, launch options and controls.</p>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <div class="card">
+            <h3>Emulator</h3>
+            <label for="emulator-path">Emulator binary</label>
+            <div class="row">
+              <input id="emulator-path" spellcheck="false" />
+              <button class="pill" id="btn-pick-emu">Browse</button>
+            </div>
+
+            <label for="extra-args">Extra arguments</label>
+            <input id="extra-args" spellcheck="false" placeholder="--graphics-debug-dump" />
+
+            <label for="keyboard-player">Keyboard player</label>
+            <select id="keyboard-player">
+              <option value="0">Shared with player 1 (default)</option>
+              <option value="1">Player 1</option>
+              <option value="2">Player 2</option>
+              <option value="3">Player 3</option>
+              <option value="4">Player 4</option>
+            </select>
+
+            <label class="check">
+              <input type="checkbox" id="graphics-debug" />
+              Dump shaders (<code>--graphics-debug-dump</code>)
+            </label>
+
+            <div class="row">
+              <button class="pill primary" id="btn-save-settings">Save settings</button>
+            </div>
+          </div>
+
+          <div class="card accent">
+            <h3>USB keyboard</h3>
+            <p>Plug a USB or Bluetooth keyboard into the PC. SDL sees it as a keyboard; no driver or pairing is needed inside Prospero.</p>
+            <ul class="tips">
+              <li>Click the game window once so it has focus.</li>
+              <li>Every binding is passed to the emulator as <code>--keymap Control=Key</code>.</li>
+              <li><kbd>F8</kbd> cycles the keyboard player at runtime; the default shares player 1 with a gamepad.</li>
+              <li><kbd>F6</kbd> toggles touch-pad mode, <kbd>F7</kbd> toggles mouse-to-right-stick.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="page-head tight">
+          <div>
+            <h3 class="section-title">Keybindings</h3>
+            <p class="muted">Click a binding, then press a key or mouse button. <kbd>Esc</kbd> cancels. <kbd>F1</kbd>, <kbd>F2</kbd>, <kbd>F7</kbd>, <kbd>F8</kbd> and <kbd>F11</kbd> are reserved.</p>
+          </div>
+          <div class="row">
+            <button class="pill" id="btn-reset-keys">Reset defaults</button>
+            <button class="pill primary" id="btn-save-keys">Save keybindings</button>
+          </div>
+        </div>
+        <div class="keymap" id="keymap"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <div class="overlay hidden" id="running">
+      <div class="running-card">
+        <div class="running-head">
+          <div class="pulse" aria-hidden="true"></div>
+          <div>
+            <h3 id="running-title">Running</h3>
+            <p class="muted" id="running-status">Starting…</p>
+          </div>
+        </div>
+        <pre class="console" id="running-log"></pre>
+        <div class="row end">
+          <button class="pill ghost" id="btn-open-log">Log folder</button>
+          <button class="pill danger" id="btn-stop">Stop</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="capture">
+      <div class="capture-card">
+        <div class="capture-key" id="capture-key">?</div>
+        <h3 id="capture-title">Set binding</h3>
+        <p>Press a key or mouse button. <kbd>Esc</kbd> cancels.</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

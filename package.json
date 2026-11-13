@@ -1,0 +1,14 @@
+{
+  "name": "prospero",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prospero monorepo: plan, documentation and desktop launcher",
+  "license": "Apache-2.0",
+  "workspaces": [
+    "ui"
+  ],
+  "scripts": {
+    "start": "npm run start --workspace ui",
+    "start:gpu": "npm run start:gpu --workspace ui"
+  }
+}

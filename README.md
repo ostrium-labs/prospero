@@ -1,16 +1,40 @@
-# prospero
+# Prospero
 
-Planning repository for a vendor-neutral PlayStation 5 emulator: native x86-64
-execution, RDNA2 → SPIR-V shader translation, a Vulkan backend, and an HLE
-Orbis runtime. **Software only** — no ASIC, no FPGA, no console modification.
+Monorepo for the Prospero project: the plan, architecture and compatibility
+strategy for a vendor-neutral PlayStation 5 emulator, plus the PS5-style desktop
+launcher. Native x86-64 execution, RDNA2 → SPIR-V shader translation, a Vulkan
+backend, and an HLE Orbis runtime. **Software only** — no ASIC, no FPGA, no
+console modification.
 
 Named after the PS5's codename. (Orbis is the PS4.)
 
-> Status: planning. Nothing here runs a game yet. This repo holds the plan, the
-> architecture, the roadmap and the compatibility strategy.
+> Status: early. The GPL-2.0 emulator fork boots and opens *Hollow Knight:
+> Voidheart Edition* on an Intel iGPU; the launcher scans, launches, streams
+> logs and edits keybindings. Compatibility work is still early.
 
-**Fork:** [ostrium-labs/prospero-emu](https://github.com/ostrium-labs/prospero-emu)
-(GPL-2.0) holds the emulator code. This repo is the plan.
+**Emulator:** [ostrium-labs/prospero-emu](https://github.com/ostrium-labs/prospero-emu)
+(GPL-2.0) holds the emulator code. This repository is the Apache-2.0 plan,
+documentation and first-party launcher.
+
+## Repository layout
+
+| Path | Contents |
+|---|---|
+| [docs/](docs/) | Plan, bake-off, architecture, roadmap, compatibility, legal and research notes |
+| [ui/](ui/) | Electron launcher: game scanning, home screen, library, launch/log overlay and keybinding editor |
+
+## Launcher
+
+```bash
+npm install
+npm start
+```
+
+The root `package.json` is an npm workspace for [`ui/`](ui/). Use
+`npm run start:gpu` if Electron's Linux sandbox helper is configured. The
+launcher starts a built `kyty_emulator` as a child process; it does not contain
+or link emulator code. See [ui/README.md](ui/README.md) for controls,
+keybindings, display-backend notes and development flags.
 
 ## Documents
 
@@ -25,6 +49,7 @@ Named after the PS5's codename. (Orbis is the PS4.)
 | [docs/ferite.md](docs/ferite.md) | How Ferite (Strata, Lithic) does and does not fit |
 | [docs/legal.md](docs/legal.md) | Dumps, keys, firmware, patents |
 | [docs/research.md](docs/research.md) | 2026 emulator landscape and PS5 hardware notes |
+| [ui/README.md](ui/README.md) | Launcher usage, controls and development flags |
 
 ## The one-line thesis
 
@@ -40,4 +65,7 @@ and add ARM via FEX/Box64 later.
 
 ## Licence
 
-Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+Apache-2.0 for this repository. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+The emulator fork is a separate repository under **GPL-2.0**; it is not linked
+into the launcher.
